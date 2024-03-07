@@ -1,19 +1,19 @@
 # Fuzzing Evaluation Guidelines
 
 
-Current version: 1.0.0
+Current version: 1.0.1
 
 Proposals for changes welcome (please open an issue for discussion or a pull request for changes).
 
 DISCLAIMER: These items represent are a best-effort attempt at capturing action items to follow during the evaluation of a scientific paper that focuses on fuzzing. **They do not apply universally to all fuzzing methods - in certain scenarios, techniques may wish to deviate for good reason from these guidelines. In any case, a case-by-case judgment is necessary.**
-The guidelines do not discuss many malicious choices that immediately negate any chance of a fair evaluation, such as giving your fuzzer an unfair advantage (e.g., by finetuning the fuzzer or its targets) or putting other fuzzers at a disadvantage.
+The guidelines do not discuss many malicious choices that immediately negate any chance of a fair evaluation, such as giving your fuzzer an unfair advantage (e.g., by fine-tuning the fuzzer or its targets) or putting other fuzzers at a disadvantage.
 
 
 
 A. Preparation for Evaluation
   1. Find relevant tools and baselines to compare against
      - 1.1 Include state-of-the-art techniques from both academia and industry
-     - 1.2 If your fuzzer is based on an existing fuzzer, include the baseline (to measure the delta of your changes, which allows to attribute improvements to your technique)
+     - 1.2 If your fuzzer is based on an existing fuzzer, include the baseline (to measure the delta of your changes, which allows attributing improvements to your technique)
      - 1.3 Use recent versions of fuzzers
      - 1.4 If applicable, derive a baseline variant of your technique that replaces core contributions by alternatives. For example, consider using a variant that replaces an informed algorithm with randomness.
      - 1.5 If using AFL-style fuzzers, do not use afl-gcc but afl-clang-fast or afl-clang-lto.
@@ -64,20 +64,20 @@ B. Documenting the Evaluation
      - 1.2 how many cores have been available to each fuzzing campaign (e.g., via CPU pinning)
      - 1.3 technologies used, such as Docker or virtualization
   2) Choose and document experiment parameters, including
-     - 2.1 a sufficiently long runtime  (if possible >= 24h)
+     - 2.1 a sufficiently long runtime (if possible >= 24h)
      - 2.2 a sufficient number of repetitions/trials to account for randomness and enable a robust statistical evaluation (if possible >= 10 trials)
-     - 2.3 fairness of computing resource allocation, i.e., all fuzzers have access to the same amount of computation resources. This requires particular consideration if a tool requires precompuation(s).
+     - 2.3 fairness of computing resource allocation, i.e., all fuzzers have access to the same amount of computation resources. This requires particular consideration if a tool requires pre-computation(s).
      - 2.4 suitable seeds:
        - 2.4.1 If possible, use uninformed seeds for coverage evaluation (for bug experiments, informed seeds may be beneficial)
        - 2.4.2 Otherwise identify the coverage achieved by the initial seed set
        - 2.4.3 Provide all fuzzers with the same set of seeds
        - 2.4.4 Publish the used set of seeds
-    - 2.5 targets:
-      - 2.5.1 Use recent versions
-      - 2.5.2 If applicable, explain modifications to the programs or runtime environment (e.g., when you patch the program or set a lower stack size)
-    - 2.6 other tools/fuzzers:
-      - 2.6.1 Use recent versions
-      - 2.6.2 If your fuzzer is based on another one, make sure the version you base your tool on and the one used in the evaluation are the same
+     - 2.5 targets:
+       - 2.5.1 Use recent versions
+       - 2.5.2 If applicable, explain modifications to the programs or runtime environment (e.g., when you patch the program or set a lower stack size)
+     - 2.6 other tools/fuzzers:
+       - 2.6.1 Use recent versions
+       - 2.6.2 If your fuzzer is based on another one, make sure the version you base your tool on and the one used in the evaluation are the same
 
 
 C. Experiment Postprocessing
@@ -101,7 +101,7 @@ C. Experiment Postprocessing
 
 D. Artifact Release
   1) Artifact Contents
-     - 1.1 Publish your code on a platform ensuring long-term availability, such as Zenodo or Github
+     - 1.1 Publish your code on a platform ensuring long-term availability, such as Zenodo or GitHub
      - 1.2 Publish modifications of other tools
        - 1.2.1 If modifying other tools, publish any modifications
        - 1.2.2 Publish your integration of other tools
@@ -114,8 +114,8 @@ D. Artifact Release
      - 2.5 Document how to run and reproduce experiments described in the paper
   3) Artifact Reusability
      - 3.1 Specify versions of all tools used
-     - 3.2 If possible, enable execution of your fuzzer independent from the underyling system, e.g., through virtualization or container engines
+     - 3.2 If possible, enable execution of your fuzzer independent of the underlying system, e.g., through virtualization or container engines
      - 3.3 Avoid external dependencies that may be unavailable in the future, such as tarball downloads via https
      - 3.4 Pin versions of dependencies
      - 3.5 If applicable, maintain the commit history of underlying tools instead of squashing them
-     - 3.6 Double check your code is complete and reusable
+     - 3.6 Double-check your code is complete and reusable
